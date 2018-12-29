@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+a {
+    color: rgb(34, 33, 33);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(36, 35, 35);
+    text-decoration: none;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #f6f9fa;
+    font-family: "Helvetica Neue",Helvetica,"Microsoft YaHei",Arial,sans-serif;
+    text-decoration: none;
+}
+a {
+    cursor: pointer;
+}
+.control-center ul li {
+    list-style: none;
+}
+
+#tag-list span {
+    display: inline-block;
+    margin-right: 10px;
+    width: 100px;
+    color: #111111;
+}
+
+.classList {
+    border: 1px solid red;
+}
+.thumbnail p {
+    text-align: center;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 5px;
+    /* border: 1px solid red; */
+}
+.thumbnail span {
+    display: block;
+    text-align: center;
+    color: black;
+    /* border: 1px solid red; */
+    margin-top: 0;
+}
+.thumbnail img {
+    width: 100%;
+    height: 100px;
+    /* border: 1px solid blue; */
+    overflow: hidden;
+}
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+/* 遮罩 */
+#blackdiv{  
+    display: none;  
+    position: absolute;  
+    top: 0%;  
+    left: 0%;  
+    width: 100%;  
+    height: 100%;  
+    background-color: black;  
+    z-index:1001;  
+    -moz-opacity: 0.8;  
+    opacity:.80;    
+   }
+
+
+.footer {
+    background-color: rgba(102,102,102,0.5);
+    width: 100%;
+    height: 10%;
+}
+.footer .copyright {
+    padding: 10px;
+    text-align: center;
+}
+
+
+.type {
+    height: 5%;
+    /* border: 1px solid #000; */
+    margin-bottom: 5px;
+}
+.type ul li{
+    float: left;
+    margin-right: 15px;
+    /* border-right: 1px solid #000; */
+    padding: 5px;
+    line-height: 21px;
+}
+.type ul li a {
+    text-decoration: none;
+    color: #111111;
+    font-size: 16px;
+    font-family: 微软雅黑, "Microsoft YaHei";
+}
+.type ul li a:hover {
+    color: green;
+}
+
+
+form.regin, form.login{
+    display: none;
+    width: 40%;
+    height: 65%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 1px solid #000; */
+    z-index: 1005;
+}
+/* form.regin {
+    display: none;
+} */
+
+form.regin .pannel,
+form.login .pannel{
+    width: 100%;
+    height: 20%;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
+}
+form.regin .pannel {
+    background-image: url('./reg.gif');
+}
+form.login .pannel {
+    background-image: url('./log.gif');
+}
+.pannel .g_modal_closeBtn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    border-radius: 2px;
+    background: #fff;
+    text-align: center;
+    line-height: 38px;
+    font-size: 30px;
+    color: #ccc;
+    z-index: 99;
+}
+
+ .form-oprate {
+    position: relative;
+    /* border: 1px solid #000; */
+    height: 80%;
+}
+
+ .form-oprate .info {
+    position: relative;
+    border-bottom: 1px solid rgba(39,41,43,0.15);
+    margin-bottom: 10px;
+}
+ .form-oprate  .info p{
+    font-size: 16px;
+    color: #4b4b4b;
+    line-height: 30px;
+    padding: 5px;
+}
+
+ .form-oprate .inputarea {
+    width: 100%;
+    height: 60%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+ .form-oprate .inputarea .inputplace {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+ .form-oprate .inputarea .inputplace input {
+    display: block;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 15%;
+    border: 1px solid rgba(39,41,43,0.15);
+    margin-bottom: 10px;
+    border-radius: 0.2857rem;
+    
+}
+.form-oprate .inputarea .inputplace input[type=submit] {
+    background-color: rgb(156, 204, 250);
+}
+.form-oprate .inputarea .inputplace input:focus {
+    border: 1px solid rgb(94, 94, 233);
+}
+ .form-oprate .inputarea .inputplace span {
+    display: block;
+    /* display: none; */
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 10px;
+    color: rgba(39,41,43,0.15);
+    margin-bottom: 8px;
+}
+ .form-oprate .inputarea .inputplace span.changeway {
+    display: block;
+    text-align: center;
+    color: #000;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 5px;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <title>教学管理中心</title>
+    <style>
+        .progress {
+            display: none;
+            width:500px;
+            height:20px;
+            /* border:1px solid gray */
+            overflow: hidden;
+        }
+
+        #prog, #prog2 {
+            height:100%;
+            width:0%;
+        }
+        
+        a.upload {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress progress-striped center-block" id="firstPrg">
+        <div id="prog" style="height:100%;width:0%;" class="progress-bar progress-bar-success">
+        </div>
+    </div>
+    <div class="progress progress-striped center-block" id="secondPrg">
+        <div id="prog2"  class="progress-bar progress-bar-success">
+
+        </div>
+    </div>
+    
+    <div class="nav nav-bar ">
+            <div class="row col-xs-15 col-sm-15 col-md-12 col-lg-15">
+                <a href="../index.php" class="pull-right">回到首页查看</a>
+            </div>
+    </div>
+    <div class="container center-block">
+        <div><p>视频信息</p></div>
+        <hr>
+            <form action="../logic_handle/saveVideo.php" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 col-md-2 control-label">名字</label>
+                    <div class="col-sm-6 col-md-6">
+                        <input type="text" placeholder="输入视频名字" name="name" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                        <label for="firstname" class="col-sm-2 col-md-2 control-label">视频作者</label>
+                        <div class="col-sm-6 col-md-6">
+                            <input type="text" placeholder="输入视频作者" name="author" class="form-control">                        
+                        </div>
+                </div>        
+                <div class="form-group">
+                        <label for="firstname" class="col-sm-2 col-md-2 control-label">院系</label>
+                        <div class="col-sm-6 col-md-6">
+                                <input type="text" placeholder="输入院系" name="acmy" class="form-control">                       
+                        </div>
+                </div>   
+                
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">课程描述</label>
+                    <div class="col-sm-6 col-md-6">
+                        <textarea  rows="3" name="description" class="form-control"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                        <div class="col-sm-4 col-md-4 col-md-offset-3">
+                            <input type="submit" class="form-control btn btn-success" value="提交">
+                        </div>
+                    </div>
+            </form>
+            
+            <div><p>视频信息</p></div>
+            <hr>
+    
+        <form action="../logic_handle/upload.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">选择上传的视频</label>
+                    <div class="col-sm-6 col-md-6">
+                            <input type="file" name="file">
+                            
+                    </div>
+            </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 col-md-2 col-md-offset-2">
+                        <input type="submit" name="上传" value="上传视频" class="form-control btn btn-success">
+                        <span class="help-block">仅支持mp4格式</span>
+                    </div>
+                        
+                </div>
+            
+        </form>
+
+        <form action="../logic_handle/upload.php" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">选择上传视频封面图片</label>
+                    <div class="col-sm-6 col-md-6">
+                            <input type="file" name="file">
+                            <span class="help-block">仅允许上传jpg/png格式</span>
+                            
+                    </div>
+            </div>
+            <div class="form-group">
+                    <div class="col-sm-2 col-md-2 col-md-offset-2">
+                            <input type="submit" name="上传" value="上传封面图片" class="form-control btn btn-success">
+                    </div>
+                        
+                </div>
+            
+        </form>
+    </div>
+</body>
+<script>
+document.getElementsByTagName('form')[1].onsubmit = uploadInfo;
+document.getElementsByTagName('form')[2].onsubmit = uploadInfo2;
+
+function uploadInfo(){
+    var fmdata = new FormData(this); // FormData会把表单的数据(包括文件),整体打包
+
+    var xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function() {
+    //     if(this.readyState == 4) {
+    //         alert(this.responseText);
+    //     }
+    // }
+    
+    
+    xhr.upload.onprogress = function(ev) {
+        if(ev.lengthComputable) {
+            document.getElementById('firstPrg').style.display = 'block';
+            // document.getElementById('secondPrg').style.display = 'none';
+            var per = 100* ev.loaded/ev.total;
+            var reg = document.getElementById('prog');
+            reg.style.width = per + '%';
+            if(reg.style.width == '100%') {
+                setTimeout(function() {
+                    document.getElementById('firstPrg').style.display = 'none';
+                },1000);
+            }
+            
+        }
+    }
+
+    xhr.open('post' , '../logic_handle/upload.php' , true);
+    xhr.send(fmdata);
+
+    return false;
+}
+
+function uploadInfo2(){
+    var fmdata = new FormData(this); // FormData会把表单的数据(包括文件),整体打包
+
+    var xhr = new XMLHttpRequest();
+    
+    xhr.upload.onprogress = function(ev) {
+        document.getElementById('secondPrg').style.display = 'block';
+        if(ev.lengthComputable) {
+            var per = 100* ev.loaded/ev.total;
+            var reg = document.getElementById('prog2');
+            reg.style.width = per + '%';
+            if(reg.style.width == '100%') {
+                setTimeout(function() {
+                    document.getElementById('secondPrg').style.display = 'none';
+                },1000)
+            }
+            
+        }
+    }
+
+    xhr.open('post' , '../logic_handle/upload.php' , true);
+    xhr.send(fmdata);
+
+    return false;
+}
+
+// var firstPrg = document.getElementsByTagName('form')[1];
+// firstPrg.addEventListener('submit',uploadInfo('firstPrg'));
+
+// var secondPrg = document.getElementsByTagName('form')[2]
+// secondPrg.addEventListener('submit',uploadInfo('secondPrg'));
+
+// function uploadInfo($whitchProg){
+//     var fmdata = new FormData(this); // FormData会把表单的数据(包括文件),整体打包
+
+//     var xhr = new XMLHttpRequest();
+//     // xhr.onreadystatechange = function() {
+//     //     if(this.readyState == 4) {
+//     //         alert(this.responseText);
+//     //     }
+//     // }
+    
+    
+//     xhr.upload.onprogress = function(ev) {
+//         if(ev.lengthComputable) {
+//             document.getElementById($whitchProg).style.display = 'block';
+//             // document.getElementById($otherProg).style.display = 'none';
+//             var per = 100* ev.loaded/ev.total;
+//             var reg = document.getElementById('prog');
+//             reg.style.width = per + '%';
+//             if(reg.style.width == '100%') {
+//                 setTimeout(function() {
+//                     document.getElementById($whitchProg).style.display = 'none';
+//                 },1000);
+//             }
+            
+//         }
+//     }
+
+//     xhr.open('post' , 'upload.php' , true);
+//     xhr.send(fmdata);
+
+//     return false;
+// }
+
+
+</script>
+</html>
+
